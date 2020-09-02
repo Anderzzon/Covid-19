@@ -80,7 +80,7 @@ class Api {
                 let httpResponse = response as? HTTPURLResponse
                 print(httpResponse)
                 let decoder = JSONDecoder()
-                var responses = try! decoder.decode(JSONData.self, from: data!)
+                let responses = try! decoder.decode(JSONData.self, from: data!)
                 
                 DispatchQueue.main .async {
                     completion(responses.response!)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		034B869A24FE6EF600DCDA2D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034B869924FE6EF600DCDA2D /* UserData.swift */; };
 		03D9426F24FC0DD600A69253 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9426E24FC0DD600A69253 /* AppDelegate.swift */; };
 		03D9427124FC0DD600A69253 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9427024FC0DD600A69253 /* SceneDelegate.swift */; };
 		03D9427324FC0DD600A69253 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9427224FC0DD600A69253 /* ContentView.swift */; };
@@ -36,7 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03D9426B24FC0DD600A69253 /* Covid-19.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Covid-19.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		034B869924FE6EF600DCDA2D /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		03D9426B24FC0DD600A69253 /* Covid-19 Stats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Covid-19 Stats.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03D9426E24FC0DD600A69253 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03D9427024FC0DD600A69253 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		03D9427224FC0DD600A69253 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -91,7 +93,7 @@
 		03D9426C24FC0DD600A69253 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				03D9426B24FC0DD600A69253 /* Covid-19.app */,
+				03D9426B24FC0DD600A69253 /* Covid-19 Stats.app */,
 				03D9428124FC0DDA00A69253 /* Covid-19Tests.xctest */,
 				03D9428C24FC0DDA00A69253 /* Covid-19UITests.xctest */,
 			);
@@ -105,6 +107,7 @@
 				03D9426E24FC0DD600A69253 /* AppDelegate.swift */,
 				03D9427024FC0DD600A69253 /* SceneDelegate.swift */,
 				03D9427224FC0DD600A69253 /* ContentView.swift */,
+				034B869924FE6EF600DCDA2D /* UserData.swift */,
 				03D9427424FC0DDA00A69253 /* Assets.xcassets */,
 				03D9427924FC0DDA00A69253 /* LaunchScreen.storyboard */,
 				03D9427C24FC0DDA00A69253 /* Info.plist */,
@@ -156,7 +159,7 @@
 			);
 			name = "Covid-19";
 			productName = "Covid-19";
-			productReference = 03D9426B24FC0DD600A69253 /* Covid-19.app */;
+			productReference = 03D9426B24FC0DD600A69253 /* Covid-19 Stats.app */;
 			productType = "com.apple.product-type.application";
 		};
 		03D9428024FC0DDA00A69253 /* Covid-19Tests */ = {
@@ -273,6 +276,7 @@
 				03D9426F24FC0DD600A69253 /* AppDelegate.swift in Sources */,
 				03D9429F24FC0E1E00A69253 /* DataModel.swift in Sources */,
 				03D9427124FC0DD600A69253 /* SceneDelegate.swift in Sources */,
+				034B869A24FE6EF600DCDA2D /* UserData.swift in Sources */,
 				03D9427324FC0DD600A69253 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,7 +452,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.erik.Covid-19";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Covid-19 Stats";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -468,7 +472,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.erik.Covid-19";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Covid-19 Stats";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
