@@ -18,24 +18,27 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(userData.filteredCountries.indices, id: \.self) { country in
-                    HStack {
+                    
+                    NavigationLink(destination: DetailView(countryID: country)) {
                         HStack {
-                            Text("\(country + 1)")
-                                .fontWeight(self.setHomeCountry(index: country, isHeadline: false))
-                                .background(Circle()
-                                    .strokeBorder(Color.red, lineWidth: 1)
-                                    .background(Circle().foregroundColor(Color.red).opacity(self.getOpacity(index: country)))
-                                    .frame(width: 30, height: 30))
-                                .foregroundColor(self.setTextColor(index: country))
-                        }.frame(width: 30)
-                        HStack {
-                            Text(self.userData.filteredCountries[country].country)
-                                .fontWeight(self.setHomeCountry(index: country, isHeadline: true))
+                            HStack {
+                                Text("\(country + 1)")
+                                    .fontWeight(self.setHomeCountry(index: country, isHeadline: false))
+                                    .background(Circle()
+                                        .strokeBorder(Color.red, lineWidth: 1)
+                                        .background(Circle().foregroundColor(Color.red).opacity(self.getOpacity(index: country)))
+                                        .frame(width: 30, height: 30))
+                                    .foregroundColor(self.setTextColor(index: country))
+                            }.frame(width: 30)
+                            HStack {
+                                Text(self.userData.filteredCountries[country].country)
+                                    .fontWeight(self.setHomeCountry(index: country, isHeadline: true))
+                            }
+                            .frame(width: 150, alignment: .leading)
+                            .padding(.leading)
+                            Text(String(format: "%.2f", self.userData.filteredCountries[country].deaths!.perMil!) + " deaths / 100k").fontWeight(self.setHomeCountry(index: country, isHeadline: false))
+                            //Text(country.country)
                         }
-                        .frame(width: 150, alignment: .leading)
-                        .padding(.leading)
-                        Text(String(format: "%.2f", self.userData.filteredCountries[country].deaths!.perMil!) + " deaths / 100k").fontWeight(self.setHomeCountry(index: country, isHeadline: false))
-                        //Text(country.country)
                     }
                 }
             }.font(.system(.footnote))
@@ -45,15 +48,18 @@ struct ContentView: View {
                     
                     
             }
-            .onDisappear() {
-                print("ContentView disappeared!")
-            }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didFinishLaunchingNotification)) { _
+                    in
+                    print("View is active")
+                }
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _
                 in
                 print("Content is shown")
                 self.loadData()
                 
             }
+
+            .environmentObject(self.userData)
             .navigationBarTitle("Covid-19 death per 100.000", displayMode: .inline)
             
         }
@@ -68,7 +74,8 @@ struct ContentView: View {
                 if ((countries[i].population) != nil) {
                     
                     let newCountry = self.deathPerHundred(country: countries[i])
-                    self.userData.filteredCountries.append(newCountry)
+                    let newCountry2 = self.testsPerHundred(country: newCountry)
+                    self.userData.filteredCountries.append(newCountry2)
                 }
             }
             
@@ -80,15 +87,38 @@ struct ContentView: View {
     }
     
     func deathPerHundred(country: Responses) -> Responses {
+        
         //Calculate death per 100.000 and add value to object:
         var country = country
         let population = country.population!
-        let totalDeaths = country.deaths?.total
-        let deathPerMil:Double = (Double(totalDeaths!) / Double(population)) * 100000
+        guard let totalDeaths = country.deaths?.total else {
+            country.deaths?.total = 0
+            country.deaths?.perMil = 0
+            return country
+        }
+        let deathPerMil:Double = (Double(totalDeaths) / Double(population)) * 100000
         country.deaths?.perMil = deathPerMil
         //print("Deaths per 100k in \(country.country): \(country.deaths!.perMil)")
         return country
     }
+    
+    func testsPerHundred(country: Responses) -> Responses {
+        
+        //Calculate tests per 100.000 and add value to object:
+        var country = country
+        let population = country.population!
+        guard let totalTests = country.tests?.total else {
+            country.tests?.total = 0
+            country.tests?.perMil = 0
+            return country
+        }
+        let testsPerMil:Double = (Double(totalTests) / Double(population)) * 100000
+        country.tests?.perMil = testsPerMil
+        //print("Deaths per 100k in \(country.country): \(country.deaths!.perMil)")
+        return country
+    }
+    
+    
     
     func getOpacity(index: Int) -> Double {
         let listLength = userData.filteredCountries.count

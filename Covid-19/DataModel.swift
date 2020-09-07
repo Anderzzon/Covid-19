@@ -52,6 +52,7 @@ struct Deaths: Hashable, Codable {
 
 struct Tests: Hashable, Codable {
     var total: Int?
+    var perMil: Double?
 }
 
 //Make the variable country to confirm to Identifible for the List View:
