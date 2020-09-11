@@ -67,7 +67,7 @@ class Api {
     func getGames(completion: @escaping ([Responses]) -> ()) {
         let headers = [
             "x-rapidapi-host": "covid-193.p.rapidapi.com",
-            "x-rapidapi-key": "c9589de0a2msh50e44877df895e3p13c6e7jsn36f46b19e364"
+            "x-rapidapi-key": "YOUR API"
         ]
         let request = NSMutableURLRequest(url: NSURL(string:  "https://covid-193.p.rapidapi.com/statistics")! as URL,
                                           cachePolicy: .useProtocolCachePolicy,
