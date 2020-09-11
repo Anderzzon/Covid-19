@@ -44,7 +44,8 @@ struct ContentView: View {
             }.font(.system(.footnote))
                 .onAppear() {
                     print("ContentView appeared!")
-                    self.loadData()
+                    //print("New countries: \(self.userData.allCountries)")
+                    //self.loadData()
                     
                     
             }
@@ -66,6 +67,7 @@ struct ContentView: View {
     }
     
     func loadData() {
+        
         let countries = Api().getGames { (countries) in
             self.userData.countries = countries
             self.userData.filteredCountries.removeAll()
